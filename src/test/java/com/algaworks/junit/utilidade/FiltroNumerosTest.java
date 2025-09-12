@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class FiltroNumerosTest {
 
   @Test
-  public void deveRetornarNumerosPares() {
+  void deveRetornarNumerosPares() {
     List<Integer> numeros = Arrays.asList(1, 2, 3, 4);
     List<Integer> numerosParesEsperados = Arrays.asList(2, 4);
     List<Integer> resultadoFiltro = FiltroNumeros.numerosPares(numeros);
