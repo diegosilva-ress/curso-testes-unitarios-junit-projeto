@@ -5,14 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class SaudacaoUtilTest {
 
   @Test
+  @DisplayName("Deve saudar com bom dia")
   public void saudarComBomDia() {
+    //Arrange
     int horaValida = 9;
+
+    //Act
     String saudacao = saudar(horaValida);
+
+    //Assert
     assertEquals("Bom dia", saudacao);
   }
 
@@ -39,8 +46,9 @@ class SaudacaoUtilTest {
 
   @Test
   void deveLancarException() {
+    int horaInvalida = -10;
     var exception = assertThrows(IllegalArgumentException.class,
-        () -> saudar(-10));
+        () -> saudar(horaInvalida));
 
     assertEquals("Hora inválida", exception.getMessage());
   }
