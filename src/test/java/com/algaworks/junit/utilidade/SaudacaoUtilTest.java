@@ -1,9 +1,10 @@
 package com.algaworks.junit.utilidade;
 
 import static com.algaworks.junit.utilidade.SaudacaoUtil.saudar;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class SaudacaoUtilTest {
     String saudacao = saudar(horaValida);
 
     //Assert
-    assertEquals("Bom dia", saudacao);
+    assertThat(saudacao).isEqualTo("Bom dia");
   }
 
   @Test
@@ -45,12 +46,11 @@ class SaudacaoUtilTest {
   }
 
   @Test
-  void deveLancarException() {
+  public void Dado_uma_hora_invalida_Quando_saudar_Entao_deve_lancar_exception() {
     int horaInvalida = -10;
-    var exception = assertThrows(IllegalArgumentException.class,
-        () -> saudar(horaInvalida));
-
-    assertEquals("Hora inválida", exception.getMessage());
+    assertThatThrownBy(() -> saudar(horaInvalida))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("Hora inválida");
   }
 
   @Test
